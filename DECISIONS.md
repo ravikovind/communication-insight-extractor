@@ -57,3 +57,22 @@
 **Tradeoffs:**
 - Slightly less obvious for backend-only exploration — acceptable for a monorepo demo
 
+---
+
+## 004 — No Hardcoded Credential Defaults in Config
+
+**Date:** 2025-02-09
+**Decision:** Use `os.environ[]` (raises `KeyError`) instead of `os.getenv()` with fallback defaults for `DATABASE_URL` and `ANTHROPIC_API_KEY`.
+
+**Reasoning:**
+- Hardcoded defaults leak credentials in source code, even if they're local dev creds
+- Fail-fast on missing config is better than silently connecting with wrong credentials
+- Forces explicit `.env` setup — no ambiguity about which DB you're hitting
+
+**Alternatives considered:**
+- `os.getenv()` with defaults: convenient for quick setup but bad security habit
+- Pydantic `BaseSettings`: more robust validation but overkill for two env vars at this stage
+
+**Tradeoffs:**
+- Slightly more setup friction — user must create `.env` before running. Mitigated by `.env.example`
+
