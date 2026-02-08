@@ -114,3 +114,22 @@
 **Tradeoffs:**
 - Regex is a heuristic — could break on unusual formatting. Acceptable for controlled demo use
 
+---
+
+## 007 — Message Deduplication via DB Constraint
+
+**Date:** 2025-02-09
+**Decision:** Add a unique constraint on `(channel, author, timestamp)` and use `INSERT ... ON CONFLICT DO NOTHING` to prevent duplicate messages.
+
+**Reasoning:**
+- Data integrity belongs at the DB level, not application level
+- Users clicking "Load Sample Data" multiple times shouldn't create duplicates
+- `ON CONFLICT DO NOTHING` is silent and idempotent — no errors, no side effects
+
+**Alternatives considered:**
+- Frontend-only guard (disable button after load): doesn't protect the API from direct calls
+- Application-level check-then-insert: race condition prone, extra query per message
+
+**Tradeoffs:**
+- Same author can't post identical-timestamp messages in same channel — acceptable, Slack has the same constraint
+
