@@ -1,0 +1,40 @@
+# Decision Log
+
+## 001 — Tech Stack Selection
+
+**Date:** 2025-02-09
+**Decision:** Use FastAPI + PostgreSQL + Next.js + Anthropic Claude API
+
+**Reasoning:**
+- FastAPI: async-native, good for I/O-bound LLM calls, minimal boilerplate
+- PostgreSQL: JSONB support for flexible insight storage, robust and battle-tested
+- Next.js (App Router): React ecosystem, server components for initial load, good DX
+- Anthropic Claude: aligns with Yander's stack, strong structured output capabilities
+
+**Alternatives considered:**
+- Flask/Django: heavier, less async-native
+- MongoDB: flexible schema but overkill, PostgreSQL JSONB covers our needs
+- OpenAI: viable but Claude aligns with target company stack
+
+**Tradeoffs:**
+- AsyncPG adds complexity vs sync psycopg2, but worth it for non-blocking LLM calls
+- Next.js is heavier than plain React/Vite for a demo, but demonstrates full-stack capability
+
+---
+
+## 002 — Database Schema: JSONB for Analysis Results
+
+**Date:** 2025-02-09
+**Decision:** Store LLM analysis results as JSONB in a single `analysis_results` table with an `analysis_type` discriminator.
+
+**Reasoning:**
+- LLM outputs are semi-structured — rigid column schemas would be fragile
+- JSONB allows querying into results without schema migration
+- Single table with type discriminator keeps it simple for a demo
+
+**Alternatives considered:**
+- Separate tables per insight type (topics, sentiment, response_time): more normalized but adds complexity without benefit at this scale
+- Storing raw LLM response text: loses queryability
+
+**Tradeoffs:**
+- Less type safety at the DB level — mitigated by Pydantic validation on the application side

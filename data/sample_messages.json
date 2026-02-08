@@ -1,0 +1,152 @@
+[
+  {
+    "channel": "#engineering",
+    "author": "alice",
+    "content": "Hey team, the new authentication service is ready for review. I've added OAuth2 support with refresh tokens.",
+    "timestamp": "2025-01-15T09:00:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "bob",
+    "content": "Nice! I'll take a look. Did you add rate limiting on the token endpoint?",
+    "timestamp": "2025-01-15T09:05:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "alice",
+    "content": "Not yet — it's on my list. Wanted to get the core flow reviewed first before adding the extras.",
+    "timestamp": "2025-01-15T09:07:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "charlie",
+    "content": "I'd prioritize rate limiting before merging. We got hit by a brute force attempt last month.",
+    "timestamp": "2025-01-15T09:15:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "alice",
+    "content": "Good point. I'll add it today and update the PR.",
+    "timestamp": "2025-01-15T09:16:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "diana",
+    "content": "Q1 roadmap is finalized. Top priorities: onboarding revamp, dashboard analytics, and mobile push notifications.",
+    "timestamp": "2025-01-15T10:00:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "bob",
+    "content": "Dashboard analytics is going to be heavy on the backend. We should sync with eng early.",
+    "timestamp": "2025-01-15T10:10:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "diana",
+    "content": "Agreed. I'll set up a cross-team meeting for Thursday. Can you prep a rough estimate?",
+    "timestamp": "2025-01-15T10:12:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "bob",
+    "content": "Sure, I'll have something by Wednesday EOD.",
+    "timestamp": "2025-01-15T10:15:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "eve",
+    "content": "Database migration for the new schema is done. Ran it in staging — no issues. Ready for prod when you are.",
+    "timestamp": "2025-01-15T11:00:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "charlie",
+    "content": "Let's do the prod migration during the maintenance window tonight. I'll monitor.",
+    "timestamp": "2025-01-15T11:20:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "eve",
+    "content": "Sounds good. I'll prep the rollback script just in case.",
+    "timestamp": "2025-01-15T11:22:00Z"
+  },
+  {
+    "channel": "#general",
+    "author": "diana",
+    "content": "Reminder: company all-hands is at 3pm today. Please join on time — we have guest speakers.",
+    "timestamp": "2025-01-15T12:00:00Z"
+  },
+  {
+    "channel": "#general",
+    "author": "alice",
+    "content": "Will it be recorded? I have a conflict with a client call.",
+    "timestamp": "2025-01-15T12:05:00Z"
+  },
+  {
+    "channel": "#general",
+    "author": "diana",
+    "content": "Yes, recording will be shared in #general afterward.",
+    "timestamp": "2025-01-15T12:06:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "bob",
+    "content": "CI pipeline is broken on main. Looks like a flaky test in the payment module. Investigating.",
+    "timestamp": "2025-01-15T13:00:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "bob",
+    "content": "Found it — race condition in the mock payment gateway. Fix is up: PR #342.",
+    "timestamp": "2025-01-15T13:30:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "charlie",
+    "content": "Approved and merged. CI is green again.",
+    "timestamp": "2025-01-15T13:45:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "eve",
+    "content": "Customer feedback from last release: users love the new search but find the filters confusing.",
+    "timestamp": "2025-01-15T14:00:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "diana",
+    "content": "That matches our analytics. Filter usage dropped 20% after the redesign. We should simplify.",
+    "timestamp": "2025-01-15T14:10:00Z"
+  },
+  {
+    "channel": "#product",
+    "author": "alice",
+    "content": "I can do a quick UX audit on the filters this week. Should be a small effort.",
+    "timestamp": "2025-01-15T14:15:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "eve",
+    "content": "Heads up — we're seeing elevated error rates on the search API. P95 latency jumped from 200ms to 800ms.",
+    "timestamp": "2025-01-15T15:00:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "alice",
+    "content": "Could be related to the new index we added yesterday. Let me check the query plans.",
+    "timestamp": "2025-01-15T15:05:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "alice",
+    "content": "Confirmed — the new index is causing a sequential scan on large tables. I'll revert and create a proper composite index.",
+    "timestamp": "2025-01-15T15:20:00Z"
+  },
+  {
+    "channel": "#engineering",
+    "author": "eve",
+    "content": "Latency is back to normal after the index fix. Good catch, Alice.",
+    "timestamp": "2025-01-15T15:45:00Z"
+  }
+]
