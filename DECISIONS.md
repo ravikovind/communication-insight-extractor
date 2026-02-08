@@ -76,3 +76,41 @@
 **Tradeoffs:**
 - Slightly more setup friction — user must create `.env` before running. Mitigated by `.env.example`
 
+---
+
+## 005 — API Versioning (v1 prefix)
+
+**Date:** 2025-02-09
+**Decision:** Prefix all API routes with `/api/v1/`.
+
+**Reasoning:**
+- Allows non-breaking evolution — new versions coexist with old ones
+- Standard REST practice, shows intentional API design
+- Trivial to implement via router prefix in FastAPI
+
+**Alternatives considered:**
+- No versioning (`/api/messages`): simpler but locks you in if the schema changes
+- Header-based versioning: more flexible but harder to test and document
+
+**Tradeoffs:**
+- Slightly longer URLs — negligible cost
+
+---
+
+## 006 — LLM Response Parsing: Strip Markdown Fences
+
+**Date:** 2025-02-09
+**Decision:** Parse LLM responses by stripping markdown code fences before JSON parsing, rather than relying on raw JSON output.
+
+**Reasoning:**
+- Claude often wraps JSON in ```json ... ``` blocks despite being told not to
+- Regex stripping is simple, defensive, and handles both fenced and raw JSON
+- Avoids fragile prompt engineering to suppress markdown formatting
+
+**Alternatives considered:**
+- Strict prompt instructions ("return ONLY JSON"): unreliable, model still wraps
+- Claude's tool use / structured output mode: more robust but adds API complexity for a demo
+
+**Tradeoffs:**
+- Regex is a heuristic — could break on unusual formatting. Acceptable for controlled demo use
+
