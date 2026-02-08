@@ -38,3 +38,22 @@
 
 **Tradeoffs:**
 - Less type safety at the DB level — mitigated by Pydantic validation on the application side
+
+---
+
+## 003 — Single Root-Level .env (No backend/.env.example)
+
+**Date:** 2025-02-09
+**Decision:** Keep a single `.env.example` at project root. No separate `backend/.env.example`.
+
+**Reasoning:**
+- Backend runs from project root context, loads `../.env` or root `.env`
+- Duplicating env files creates maintenance burden and drift risk
+- README will document the single `.env` setup clearly
+
+**Alternatives considered:**
+- Separate `backend/.env.example`: clearer if someone opens only `backend/`, but duplication
+
+**Tradeoffs:**
+- Slightly less obvious for backend-only exploration — acceptable for a monorepo demo
+
